@@ -1,0 +1,306 @@
+/* ============================================================
+   CONTATO.CSS — Aurora Contact Form
+   ============================================================ */
+
+:root {
+  --aurora-green: #4fffb0;
+  --aurora-teal: #00e5cc;
+  --aurora-glow: rgba(79, 255, 176, 0.18);
+  --aurora-dim: rgba(0, 229, 204, 0.10);
+  --dark-base: rgba(5, 12, 18, 0.82);
+  --dark-card: rgba(8, 20, 28, 0.72);
+  --border-glow: rgba(79, 255, 176, 0.28);
+  --text-primary: #e8f5f0;
+  --text-muted: rgba(200, 235, 220, 0.55);
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Lato', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-image: url('1779318108612_viland.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Dark atmospheric overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 10%, rgba(0, 180, 120, 0.10) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(3,10,14,0.55) 0%, rgba(3,10,14,0.70) 60%, rgba(3,10,14,0.85) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  padding: 2rem 1.25rem;
+}
+
+/* ============================================================
+   FORM CARD
+   ============================================================ */
+
+.form-card {
+  background: var(--dark-card);
+  backdrop-filter: blur(22px) saturate(1.4);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  border: 1px solid var(--border-glow);
+  border-radius: 20px;
+  padding: 2.8rem 2.4rem 2.4rem;
+  box-shadow:
+    0 0 0 1px rgba(79,255,176,0.06),
+    0 8px 40px rgba(0,0,0,0.55),
+    0 0 80px rgba(79,255,176,0.06) inset;
+  animation: cardReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cardReveal {
+  from { opacity: 0; transform: translateY(28px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2.2rem;
+}
+
+.rune {
+  font-size: 1.4rem;
+  color: var(--aurora-green);
+  display: block;
+  margin-bottom: 0.75rem;
+  animation: pulse 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px var(--aurora-green));
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.15); }
+}
+
+.form-header h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.65rem;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  text-shadow: 0 0 20px rgba(79,255,176,0.35);
+  margin-bottom: 0.45rem;
+}
+
+.form-header p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  font-weight: 300;
+}
+
+/* ============================================================
+   FORM FIELDS  — Flexbox column layout
+   ============================================================ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  animation: fieldIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.field:nth-child(1) { animation-delay: 0.10s; }
+.field:nth-child(2) { animation-delay: 0.18s; }
+.field:nth-child(3) { animation-delay: 0.26s; }
+.field:nth-child(4) { animation-delay: 0.34s; }
+
+@keyframes fieldIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ---- Labels ---- */
+label {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--aurora-teal);
+}
+
+/* ---- Inputs, Select, Textarea ---- */
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.78rem 1rem;
+  background: rgba(5, 18, 22, 0.65);
+  border: 1px solid rgba(79, 255, 176, 0.18);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 300;
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* Focus state */
+input[type="text"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--aurora-green);
+  background: rgba(5, 25, 28, 0.80);
+  box-shadow:
+    0 0 0 3px rgba(79,255,176,0.10),
+    0 0 16px rgba(79,255,176,0.08) inset;
+}
+
+/* Textarea resize */
+textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.6;
+}
+
+/* Select arrow */
+.field:has(select)::after {
+  content: '▾';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--aurora-green);
+  pointer-events: none;
+  font-size: 0.8rem;
+}
+
+.field:has(select) {
+  position: relative;
+}
+
+select option {
+  background: #071318;
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   SUBMIT BUTTON
+   ============================================================ */
+
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  padding: 0.88rem 1.5rem;
+  background: linear-gradient(135deg, #1acea8 0%, #3fff9e 100%);
+  border: none;
+  border-radius: 10px;
+  color: #021a12;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+  box-shadow:
+    0 4px 22px rgba(79, 255, 176, 0.28),
+    0 1px 4px rgba(0,0,0,0.3);
+  animation: fieldIn 0.6s 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.btn-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 32px rgba(79,255,176,0.42),
+    0 2px 8px rgba(0,0,0,0.35);
+  filter: brightness(1.08);
+}
+
+.btn-submit:hover::before {
+  opacity: 1;
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 12px rgba(79,255,176,0.22);
+}
+
+.btn-submit svg {
+  transition: transform 0.2s ease;
+}
+
+.btn-submit:hover svg {
+  transform: translateX(3px) translateY(-2px);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 540px) {
+  .form-card {
+    padding: 2rem 1.4rem 1.8rem;
+  }
+  .form-header h1 {
+    font-size: 1.35rem;
+  }
+}
